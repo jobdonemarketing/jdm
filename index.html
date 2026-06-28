@@ -1,65 +1,372 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JobDone.Marketing – Agenție de Marketing</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:#f9fafb; color:#111827; line-height:1.5; }
-    header { background:#0f172a; color:white; padding:2rem 1rem; text-align:center; }
-    header h1 { font-size:2.5rem; margin-bottom:0.5rem; }
-    header p { font-size:1.2rem; opacity:0.9; }
-    main { max-width:960px; margin:2rem auto; padding:0 1rem; }
-    .intro { background:white; border-radius:12px; padding:2rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); margin-bottom:2rem; }
-    .directories { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1.5rem; }
-    .card { background:white; border-radius:12px; padding:1.5rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); transition: transform 0.2s; }
-    .card:hover { transform:translateY(-3px); }
-    .card h2 { font-size:1.5rem; color:#0f172a; margin-bottom:0.5rem; }
-    .card p { color:#4b5563; margin-bottom:1rem; }
-    .btn { display:inline-block; background:#2563eb; color:white; padding:0.5rem 1.25rem; border-radius:8px; text-decoration:none; font-weight:500; }
-    .btn:hover { background:#1d4ed8; }
-    footer { text-align:center; padding:2rem 1rem; color:#6b7280; font-size:0.9rem; }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Job Done Marketing LLC – Full-service digital marketing agency. We build brands, drive growth, and deliver results worldwide." />
+    <title>Job Done Marketing LLC – Full-Service Digital Agency</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --radius: 12px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--light);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero */
+        .hero {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 1rem 5rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .hero .highlight {
+            color: #60a5fa;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+        }
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            margin-left: 1rem;
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+        }
+        .section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        .section .subhead {
+            text-align: center;
+            color: var(--gray);
+            max-width: 600px;
+            margin: -1rem auto 2.5rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+            text-align: center;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* About */
+        .about {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .about-text {
+            flex: 1 1 300px;
+        }
+        .about-text h2 {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        .about-stats {
+            flex: 1 1 300px;
+            display: flex;
+            gap: 2rem;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .stat {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Local Projects (small priority) */
+        .local-projects {
+            background: #f1f5f9;
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-top: 1rem;
+            box-shadow: var(--shadow);
+        }
+        .local-projects h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            color: var(--primary);
+            text-align: center;
+        }
+        .project-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            list-style: none;
+        }
+        .project-list li a {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 0.6rem 1.4rem;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background 0.2s, color 0.2s;
+            display: inline-block;
+        }
+        .project-list li a:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Contact CTA */
+        .cta {
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            padding: 3rem 1.5rem;
+            border-radius: var(--radius);
+        }
+        .cta h2 {
+            color: white;
+        }
+        .cta p {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        .email-link {
+            color: #93c5fd;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .email-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 2rem;
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .footer-legal {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 640px) {
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>JobDone.Marketing</h1>
-    <p>Agenție de marketing performant – construim directoare locale scalabile</p>
-<p><a href="mailto:someone@example.com">Send Email</a></p>  </header>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>We Make <span class="highlight">Marketing</span> Work.<br>Anywhere. Almost.</h1>
+            <p>From strategy to execution, Job Done Marketing LLC delivers full‑service digital growth — no matter where your audience is.</p>
+            <a href="mailto:jobdonemarketing@proton.me" class="btn">Start a Project</a>
+            <a href="#services" class="btn btn-outline">What We Do</a>
+        </div>
+    </section>
 
-  <main>
-    <div class="intro">
-      <h2>Despre noi</h2>
-      <p>
-        Suntem o agenție de marketing digital care dezvoltă și operează directoare locale
-        pentru servicii esențiale. Fiecare director acoperă toate județele României,
-        pornind de la orașul principal și extinzându-se la nivel de orașe și comune.
-      </p>
-    </div>
+    <!-- SERVICES -->
+    <section id="services" class="section container">
+        <h2>Our Services</h2>
+        <p class="subhead">A complete marketing toolbox. We handle everything from brand identity to paid acquisition.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Strategy & Consulting</h3>
+                <p>Market research, positioning, and data‑driven roadmaps that align with your business goals.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3>SEO & Content</h3>
+                <p>Organic growth through technical SEO, content marketing, and authority building.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📣</div>
+                <h3>Paid Advertising</h3>
+                <p>Google Ads, social media campaigns, and programmatic display – optimized for ROI.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Brand & Creative</h3>
+                <p>Visual identity, copywriting, video, and design that tells your story consistently.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Web Development</h3>
+                <p>High‑performance websites, landing pages, and e‑commerce solutions built for conversion.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>Automation & CRM</h3>
+                <p>Email workflows, lead nurturing, and marketing automation that saves time and scales.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="directories">
-      <div class="card">
-        <h2>pizzalist.ro</h2>
-        <p>Catalog național de pizzerii. Caută pizzerii în județul tău, orașul tău.</p>
-        <a href="https://pizzalist.ro/" class="btn" target="_blank">Vezi directorul</a>
-      </div>
-      <div class="card">
-        <h2>reparatii.online</h2>
-        <p>Instalatori și servicii de instalații. Acoperire națională.</p>
-        <!-- momentan link placeholder, va urma același șablon -->
-        <a href="https://reparatii.online/" class="btn" target="_blank">În curând</a>
-      </div>
-      <div class="card">
-        <h2>evadari.ro</h2>
-        <p>Evadari in natura pentru familie. Destinatii super, preturi ok.</p>
-        <a href="https://evadari.ro/" class="btn" target="_blank">În curând</a>
-      </div>
-    </div>
-  </main>
+    <!-- ABOUT + STATS -->
+    <section class="section container">
+        <div class="about">
+            <div class="about-text">
+                <h2>We’re Job Done Marketing LLC</h2>
+                <p>Based in the US and operating globally, we help businesses of all sizes find, engage, and convert their customers. Whether you need a full campaign launch or a quick growth sprint — we get it <strong>done</strong>.</p>
+                <p>We work with startups, local services, and international brands. No project is too small, no geography too distant (almost).</p>
+            </div>
+            <div class="about-stats">
+                <div>
+                    <div class="stat">100%</div>
+                    <div class="stat-label">Remote & Global</div>
+                </div>
+                <div>
+                    <div class="stat">A-Z</div>
+                    <div class="stat-label">Marketing Funnel</div>
+                </div>
+                <div>
+                    <div class="stat">24/7</div>
+                    <div class="stat-label">Campaign Monitoring</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    &copy; 2026 JobDone.Marketing. Toate directoarele sunt construite pe același șablon HTML.
-  </footer>
+    <!-- LOCALIZED PROJECTS (small priority) -->
+    <section class="section container">
+        <div class="local-projects">
+            <h3>🌍 Localized Projects in Romania</h3>
+            <p style="text-align: center; color: #64748b; margin-bottom: 1.5rem;">Examples of our scalable local directory networks — built with the same precision we apply everywhere.</p>
+            <ul class="project-list">
+                <li><a href="https://pizzalist.ro/" target="_blank">pizzalist.ro</a></li>
+                <li><a href="https://reparatii.online/" target="_blank">reparatii.online</a></li>
+                <li><a href="https://evadari.ro/" target="_blank">evadari.ro</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="section container">
+        <div class="cta">
+            <h2>Let’s Build Something Great</h2>
+            <p>Reach out directly at <a href="mailto:jobdonemarketing@proton.me" class="email-link">jobdonemarketing@proton.me</a> or click below.</p>
+            <a href="mailto:jobdonemarketing@proton.me" class="btn">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Job Done Marketing LLC</strong>. Full‑service marketing, anywhere (almost).</p>
+            <div class="footer-legal">
+                <p>Registered Office: 1209 Mountain Road Pl NE, Ste N, Albuquerque, NM 87110, USA</p>
+                <p>Email: <a href="mailto:jobdonemarketing@proton.me">jobdonemarketing@proton.me</a> | <a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
