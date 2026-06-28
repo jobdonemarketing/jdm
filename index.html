@@ -1,1 +1,65 @@
-work in progress
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JobDone.Marketing – Agenție de Marketing</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:#f9fafb; color:#111827; line-height:1.5; }
+    header { background:#0f172a; color:white; padding:2rem 1rem; text-align:center; }
+    header h1 { font-size:2.5rem; margin-bottom:0.5rem; }
+    header p { font-size:1.2rem; opacity:0.9; }
+    main { max-width:960px; margin:2rem auto; padding:0 1rem; }
+    .intro { background:white; border-radius:12px; padding:2rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); margin-bottom:2rem; }
+    .directories { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1.5rem; }
+    .card { background:white; border-radius:12px; padding:1.5rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); transition: transform 0.2s; }
+    .card:hover { transform:translateY(-3px); }
+    .card h2 { font-size:1.5rem; color:#0f172a; margin-bottom:0.5rem; }
+    .card p { color:#4b5563; margin-bottom:1rem; }
+    .btn { display:inline-block; background:#2563eb; color:white; padding:0.5rem 1.25rem; border-radius:8px; text-decoration:none; font-weight:500; }
+    .btn:hover { background:#1d4ed8; }
+    footer { text-align:center; padding:2rem 1rem; color:#6b7280; font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>JobDone.Marketing</h1>
+    <p>Agenție de marketing performant – construim directoare locale scalabile</p>
+  </header>
+
+  <main>
+    <div class="intro">
+      <h2>Despre noi</h2>
+      <p>
+        Suntem o agenție de marketing digital care dezvoltă și operează directoare locale
+        pentru servicii esențiale. Fiecare director acoperă toate județele României,
+        pornind de la orașul principal și extinzându-se la nivel de orașe și comune.
+      </p>
+    </div>
+
+    <div class="directories">
+      <div class="card">
+        <h2>pizzalist.ro</h2>
+        <p>Catalog național de pizzerii. Caută pizzerii în județul tău, orașul tău.</p>
+        <a href="https://pizzalist.ro/" class="btn" target="_blank">Vezi directorul</a>
+      </div>
+      <div class="card">
+        <h2>reparatii.online</h2>
+        <p>Instalatori și servicii de instalații. Acoperire națională.</p>
+        <!-- momentan link placeholder, va urma același șablon -->
+        <a href="https://reparatii.online/" class="btn" target="_blank">În curând</a>
+      </div>
+      <div class="card">
+        <h2>evadari.ro</h2>
+        <p>Evadari in natura pentru familie. Destinatii super, preturi ok.</p>
+        <a href="https://evadari.ro/" class="btn" target="_blank">În curând</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 JobDone.Marketing. Toate directoarele sunt construite pe același șablon HTML.
+  </footer>
+</body>
+</html>
