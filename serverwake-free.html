@@ -1,0 +1,343 @@
+cd /var/www/serverwake
+cat > serverwake-free.html <<'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Serverwake Free — Job Done Marketing</title>
+<meta name="description" content="A minimal service watchdog for Ubuntu servers. Watches delivery-layer services and restarts them if they fail. Apache 2.0.">
+<style>
+  :root {
+    --bg: #faf8f5;
+    --fg: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #b33a3a;
+    --border: #e2ddd6;
+    --code-bg: #f2ede6;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--fg);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  .breadcrumb {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+  .tagline {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 48px 0 16px;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+  p { margin: 0 0 16px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ul, ol { padding-left: 24px; margin: 0 0 16px; }
+  li { margin-bottom: 6px; }
+  code {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+    font-size: 14px;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  pre {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.55;
+    background: var(--code-bg);
+    padding: 16px 20px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 0 0 20px;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+  }
+  .download {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+  .download h3 { margin-top: 0; }
+  .download .filename {
+    font-family: 'SF Mono', 'Monaco', monospace;
+    font-size: 14px;
+    color: var(--muted);
+    margin: 8px 0;
+  }
+  .download .sha {
+    font-family: 'SF Mono', 'Monaco', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    word-break: break-all;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: 8px;
+  }
+  .btn:hover { background: #9a3030; text-decoration: none; }
+  .note {
+    background: #fdf6f0;
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-size: 15px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 15px;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    font-weight: 600;
+    background: var(--code-bg);
+  }
+  footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="breadcrumb"><a href="/">Job Done Marketing</a> &rsaquo; <a href="/free/">Free Tools</a> &rsaquo; Serverwake Free</div>
+  <h1>Serverwake Free</h1>
+  <p class="tagline">A minimal service watchdog for Ubuntu servers.</p>
+</header>
+
+<p>Serverwake Free watches a built-in catalogue of delivery-layer services &mdash; nginx, PHP-FPM, Redis, MariaDB, Docker, ClamAV, Fail2ban, and similar &mdash; and restarts them if they fail. That is the entire product. No dashboards, no alerts to tune, no integrations to wire up. Just a binary that runs forever and restarts what breaks.</p>
+
+<p>It is the free, Apache-2.0-licensed version of a larger paid product. It is not crippled; it is complete for its scope.</p>
+
+<h2>What it watches</h2>
+
+<p>A built-in catalogue of common delivery-layer services:</p>
+
+<ul>
+  <li><strong>Web servers:</strong> <code>nginx</code>, <code>apache2</code></li>
+  <li><strong>Application runtimes:</strong> <code>php*-fpm</code>, <code>gunicorn</code>, <code>uwsgi</code></li>
+  <li><strong>Caches and data stores:</strong> <code>redis-server</code>, <code>memcached</code>, <code>mariadb</code>, <code>mysql</code>, <code>postgresql@*-main</code></li>
+  <li><strong>Containers:</strong> <code>docker</code></li>
+  <li><strong>Security and integrity:</strong> <code>clamav-daemon</code>, <code>fail2ban</code></li>
+  <li><strong>File transfer:</strong> <code>pure-ftpd</code></li>
+  <li><strong>Process supervision:</strong> <code>supervisor</code></li>
+</ul>
+
+<p>Entries with <code>*</code> are globs: <code>php*-fpm</code> matches <code>php8.3-fpm</code>, <code>php8.4-fpm</code>, and so on. At startup, Serverwake resolves the catalogue against systemd and watches only the services that are present.</p>
+
+<p>Serverwake does not watch OS plumbing (<code>systemd-*</code>, <code>dbus</code>, <code>cron</code>, <code>rsyslog</code>, <code>getty</code>, <code>polkit</code>, <code>ssh</code>) or hardware management (<code>ModemManager</code>, <code>multipathd</code>, <code>udisks2</code>). If those fail, the system is unhealthy &mdash; that is out of scope for a service watchdog.</p>
+
+<h2>What it does</h2>
+
+<p>On every 60-second tick, Serverwake checks each watched service. If a service is in the <code>failed</code> state, it is restarted. Nothing else happens.</p>
+
+<p><strong>Deliberate stops are respected.</strong> If you run <code>systemctl stop nginx</code>, Serverwake does not restart it. Only <code>failed</code> services are restarted. Only interventions are logged.</p>
+
+<h2>Download</h2>
+
+<div class="download">
+  <h3>Serverwake Free v1.0.0</h3>
+  <p class="filename">serverwake-free-v1.0.0-linux-amd64.tar.gz</p>
+  <p>Linux amd64, Ubuntu 24.04 LTS tested. Single static binary, no runtime dependencies. Apache 2.0.</p>
+  <a class="btn" href="/free/serverwake-free/serverwake-free-v1.0.0-linux-amd64.tar.gz">Download</a>
+  <div class="sha">SHA256: 4be7fe6550b5b8285478ff985ea55c1da1bad3647eba6187ec7b36136047e375</div>
+</div>
+
+<h3>What is in the tarball</h3>
+
+<pre><code>serverwake-free-v1.0.0-linux-amd64/
+├── serverwake-free              (the binary)
+├── serverwake-free.service      (systemd unit)
+├── serverwake-free.logrotate    (log rotation config)
+├── README.md                    (install, use, uninstall)
+├── LICENSE                      (Apache 2.0)
+├── CHANGELOG.md
+└── SHA256SUMS                   (hashes of all files above)</code></pre>
+
+<p>Verify the download before installing:</p>
+
+<pre><code>sha256sum serverwake-free-v1.0.0-linux-amd64.tar.gz</code></pre>
+
+<p>The output must match the SHA256 above.</p>
+
+<h2>Install</h2>
+
+<p>Four commands. Run as root.</p>
+
+<pre><code>sudo install -m 755 -o root -g root serverwake-free /usr/local/bin/serverwake-free
+sudo install -m 644 -o root -g root serverwake-free.service /etc/systemd/system/serverwake-free.service
+sudo touch /var/log/serverwake-free.log
+sudo chown admin:admin /var/log/serverwake-free.log
+sudo chmod 644 /var/log/serverwake-free.log
+sudo systemctl daemon-reload
+sudo systemctl enable --now serverwake-free</code></pre>
+
+<p>Replace <code>admin:admin</code> with the user and group that should own the log on your system. The service runs as root; the log is owned by you, so you can read it without <code>sudo</code>.</p>
+
+<p>Install the logrotate config so the log rotates weekly:</p>
+
+<pre><code>sudo install -m 644 -o root -g root serverwake-free.logrotate /etc/logrotate.d/serverwake-free</code></pre>
+
+<h2>Check that it is running</h2>
+
+<pre><code>systemctl status serverwake-free</code></pre>
+
+<h2>Read the log</h2>
+
+<pre><code>cat /var/log/serverwake-free.log</code></pre>
+
+<p>The log contains only interventions &mdash; moments when Serverwake restarted a service, or tried to and failed. If the log is empty, everything is fine.</p>
+
+<h2>What it finds on a typical server</h2>
+
+<p>On a standard Ubuntu 24.04 web server running a common LEMP stack, Serverwake resolves the catalogue to something like:</p>
+
+<pre><code>nginx
+php8.x-fpm
+redis-server
+memcached
+mariadb
+fail2ban
+pure-ftpd
+supervisor</code></pre>
+
+<p>Eight services. That is what Serverwake watches. Every 60 seconds it checks each one, and if any is in the <code>failed</code> state, it restarts it and writes one line to the log.</p>
+
+<p>On the same server, these catalogue entries may match nothing and are silently skipped:</p>
+
+<pre><code>apache2
+gunicorn
+uwsgi
+mysql
+postgresql@*-main
+docker
+clamav-daemon</code></pre>
+
+<p>They are in the catalogue because other servers run them. Serverwake is designed to work on any Ubuntu box with any combination of common delivery-layer services. It watches what is present and ignores what is not. No configuration required.</p>
+
+<h2>After installing or removing a service</h2>
+
+<p>The catalogue is resolved at startup. If you install a new version of a catalogued service (for example, <code>php8.4-fpm</code> alongside <code>php8.3-fpm</code>) or remove one, tell Serverwake to re-scan:</p>
+
+<pre><code>sudo systemctl reload serverwake-free</code></pre>
+
+<p>Serverwake will re-resolve the catalogue and log the new watch list. This is not automatic &mdash; by design. The sysadmin knows when the service landscape changes.</p>
+
+<h2>Uninstall</h2>
+
+<pre><code>sudo systemctl stop serverwake-free
+sudo systemctl disable serverwake-free
+sudo rm /etc/systemd/system/serverwake-free.service
+sudo rm /usr/local/bin/serverwake-free
+sudo systemctl daemon-reload</code></pre>
+
+<p>The log file at <code>/var/log/serverwake-free.log</code> is left in place. Delete it manually if you want.</p>
+
+<h2>What it does not do</h2>
+
+<p>Serverwake Free deliberately omits:</p>
+
+<ul>
+  <li>Configuration file (the catalogue is built-in)</li>
+  <li>Dashboard, web or terminal</li>
+  <li>Pause or resume</li>
+  <li>Email, Slack, webhook, or any notification</li>
+  <li>HTTP health checks</li>
+  <li>Process-state or I/O monitoring</li>
+  <li>Disk cleanup</li>
+  <li>ClamAV self-tests</li>
+  <li>Docker container restarts (only the <code>docker</code> service itself)</li>
+  <li>System health checks (load, memory, disk)</li>
+  <li>Suspension on degraded systemd state</li>
+  <li>Telemetry, update checks, or any network traffic</li>
+</ul>
+
+<p>Every one of these is either a paid-version feature or explicitly out of scope. The paid version adds a config file, a read-only dashboard, a TTY pause system, smart detectors, and vendor support.</p>
+
+<h2>Source code</h2>
+
+<p>The complete source code is included in the tarball and is also <a href="/free/serverwake-free/source/">available for browsing</a>. To build from source:</p>
+
+<pre><code>cd /path/to/serverwake-free
+go build -ldflags="-s -w" -o serverwake-free .</code></pre>
+
+<p>Requires Go 1.25 or newer. No dependencies beyond the standard library.</p>
+
+<p>Contributions are welcome by email. Send patches to <a href="mailto:free@serverwake.com">free@serverwake.com</a>.</p>
+
+<h2>License</h2>
+
+<p>Apache 2.0. See the <code>LICENSE</code> file in the tarball, or read it <a href="https://www.apache.org/licenses/LICENSE-2.0">at apache.org</a>.</p>
+
+<footer>
+  <p>Serverwake Free is a product of <a href="/">Job Done Marketing LLC</a>. The paid version is at <a href="https://serverwake.com">serverwake.com</a>.</p>
+</footer>
+
+</div>
+</body>
+</html>
+HTMLEOF
+
+echo "Written: $(wc -l < serverwake-free.html) lines, $(wc -c < serverwake-free.html) bytes"
