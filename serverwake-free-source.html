@@ -1,0 +1,530 @@
+cd /var/www/serverwake
+cat > serverwake-free-source.html <<'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Serverwake Free — Source Code</title>
+<meta name="description" content="Complete Go source code of Serverwake Free. Six files, 321 lines, Apache 2.0.">
+<style>
+  :root {
+    --bg: #faf8f5;
+    --fg: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #b33a3a;
+    --border: #e2ddd6;
+    --code-bg: #f2ede6;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--fg);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  .breadcrumb {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+  .tagline {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 56px 0 8px;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+    letter-spacing: -0.01em;
+  }
+  .file-meta {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+  p { margin: 0 0 16px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+    font-size: 14px;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  pre {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+    font-size: 13.5px;
+    line-height: 1.55;
+    background: var(--code-bg);
+    padding: 20px 24px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 0 0 32px;
+    border: 1px solid var(--border);
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+  }
+  .marker {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    background: none;
+    padding: 0;
+    margin: 0 0 8px;
+    letter-spacing: 0.02em;
+  }
+  .note {
+    background: #fdf6f0;
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 24px 0;
+    font-size: 15px;
+  }
+  footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="breadcrumb"><a href="/">Job Done Marketing</a> &rsaquo; <a href="/serverwake-free.html">Serverwake Free</a> &rsaquo; Source Code</div>
+  <h1>Serverwake Free — Source Code</h1>
+  <p class="tagline">Version 1.0.0 &middot; Apache 2.0 &middot; Copyright 2026 Job Done Marketing LLC</p>
+</header>
+
+<p>Six files, 321 lines total. No dependencies beyond the Go standard library. Build with:</p>
+
+<pre><code>go build -ldflags="-s -w" -o serverwake-free .</code></pre>
+
+<p>Requires Go 1.25 or newer. The complete source follows, one file per section, delimited by BEGIN/END markers.</p>
+
+<p class="marker">===== BEGIN version.go =====</p>
+
+<h2>version.go</h2>
+<p class="file-meta">12 lines &middot; the version constant and its printer</p>
+
+<pre><code>package main
+
+import "fmt"
+
+// version is the current release version of Serverwake Free.
+// Bump this on every release.
+const version = "1.0.0"
+
+// printVersion writes the version string to stdout.
+func printVersion() {
+	fmt.Printf("serverwake-free v%s\n", version)
+}</code></pre>
+
+<p class="marker">===== END version.go =====</p>
+
+<p class="marker">===== BEGIN log.go =====</p>
+
+<h2>log.go</h2>
+<p class="file-meta">49 lines &middot; timestamped logging to stdout and file</p>
+
+<pre><code>package main
+
+import (
+	"fmt"
+	"os"
+	"time"
+)
+
+// logFilePath is where Serverwake Free writes its intervention log.
+// The file is pre-created at install time with owner admin:admin.
+// The process never creates it; if it is missing, interventions are
+// reported to stderr only.
+const logFilePath = "/var/log/serverwake-free.log"
+
+// timestamp returns the current time in ISO-8601 UTC format.
+func timestamp() string {
+	return time.Now().UTC().Format("2006-01-02T15:04:05Z")
+}
+
+// logInfo writes a timestamped line to stdout.
+func logInfo(msg string) {
+	fmt.Printf("%s %s\n", timestamp(), msg)
+}
+
+// logFile appends a timestamped line to the log file.
+//
+// The file is opened with O_APPEND|O_WRONLY only — no O_CREATE. If
+// the file does not exist, the append fails and the error is written
+// to stderr. This guarantees the log's ownership never flips from
+// admin:admin to root:root at runtime.
+func logFile(msg string) {
+	f, err := os.OpenFile(logFilePath, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%s cannot append to log: %v\n", timestamp(), err)
+		return
+	}
+	defer f.Close()
+
+	if _, err := fmt.Fprintf(f, "%s %s\n", timestamp(), msg); err != nil {
+		fmt.Fprintf(os.Stderr, "%s failed to write to log: %v\n", timestamp(), err)
+	}
+}
+
+// logBoth writes a timestamped line to both stdout and the log file.
+// Used for every intervention.
+func logBoth(msg string) {
+	logInfo(msg)
+	logFile(msg)
+}</code></pre>
+
+<p class="marker">===== END log.go =====</p>
+
+<p class="marker">===== BEGIN systemd.go =====</p>
+
+<h2>systemd.go</h2>
+<p class="file-meta">79 lines &middot; systemd queries, restart, unit listing</p>
+
+<pre><code>package main
+
+import (
+	"os/exec"
+	"path/filepath"
+	"strings"
+)
+
+// isFailed reports whether a systemd service is in the failed state.
+//
+// This is the only condition that triggers a restart. A service that
+// was deliberately stopped (systemctl stop) is "inactive", not
+// "failed", and Serverwake must leave it alone. A service that
+// crashed or gave up after retries is "failed", and Serverwake
+// restarts it.
+func isFailed(name string) bool {
+	err := exec.Command("systemctl", "is-failed", "--quiet", name).Run()
+	return err == nil
+}
+
+// isActive reports whether a systemd service is currently active.
+// Used only to verify a restart succeeded.
+func isActive(name string) bool {
+	err := exec.Command("systemctl", "is-active", "--quiet", name).Run()
+	return err == nil
+}
+
+// restart asks systemd to restart a service.
+func restart(name string) error {
+	return exec.Command("systemctl", "restart", name).Run()
+}
+
+// listAllServiceUnits returns the names (without .service suffix) of
+// all service unit files known to systemd on this host.
+func listAllServiceUnits() ([]string, error) {
+	out, err := exec.Command("systemctl", "list-unit-files",
+		"--type=service",
+		"--no-legend",
+		"--no-pager",
+	).Output()
+	if err != nil {
+		return nil, err
+	}
+
+	var units []string
+	for _, line := range strings.Split(string(out), "\n") {
+		line = strings.TrimSpace(line)
+		if line == "" {
+			continue
+		}
+		fields := strings.Fields(line)
+		if len(fields) == 0 {
+			continue
+		}
+		name := strings.TrimSuffix(fields[0], ".service")
+		units = append(units, name)
+	}
+	return units, nil
+}
+
+// listMatchingUnits returns the names of service units matching a
+// pattern. The pattern may be an exact name (e.g. "nginx") or a shell
+// glob (e.g. "php*-fpm"). Matching is done in Go with filepath.Match.
+func listMatchingUnits(pattern string) ([]string, error) {
+	all, err := listAllServiceUnits()
+	if err != nil {
+		return nil, err
+	}
+
+	var matches []string
+	for _, name := range all {
+		ok, err := filepath.Match(pattern, name)
+		if err != nil || !ok {
+			continue
+		}
+		matches = append(matches, name)
+	}
+	return matches, nil
+}</code></pre>
+
+<p class="marker">===== END systemd.go =====</p>
+
+<p class="marker">===== BEGIN catalogue.go =====</p>
+
+<h2>catalogue.go</h2>
+<p class="file-meta">58 lines &middot; the built-in service catalogue and its resolution</p>
+
+<pre><code>package main
+
+// catalogue is the built-in list of delivery-layer services that
+// Serverwake Free knows how to watch. Entries may be exact unit names
+// or glob patterns (e.g. "php*-fpm"). At startup, each entry is
+// resolved against systemd, and only present services are watched.
+//
+// This list deliberately excludes OS plumbing (systemd-*, dbus, cron,
+// rsyslog, getty, polkit, ssh) and hardware/system management
+// (ModemManager, multipathd, udisks2, upower). Serverwake watches the
+// services that deliver the product, not the services that keep the
+// operating system alive.
+var catalogue = []string{
+	// Web servers
+	"nginx",
+	"apache2",
+
+	// Application runtimes
+	"php*-fpm",
+	"gunicorn",
+	"uwsgi",
+
+	// Caches and data stores
+	"redis-server",
+	"memcached",
+	"mariadb",
+	"mysql",
+	"postgresql@*-main",
+
+	// Containers
+	"docker",
+
+	// Security and integrity
+	"clamav-daemon",
+	"fail2ban",
+
+	// File transfer
+	"pure-ftpd",
+
+	// Process supervision
+	"supervisor",
+}
+
+// resolveCatalogue expands the built-in catalogue against the local
+// systemd instance and returns the list of concrete unit names that
+// are present. Entries that match nothing are silently skipped.
+// Aliases are treated as distinct services.
+func resolveCatalogue() []string {
+	var resolved []string
+	for _, entry := range catalogue {
+		matches, err := listMatchingUnits(entry)
+		if err != nil || len(matches) == 0 {
+			continue
+		}
+		resolved = append(resolved, matches...)
+	}
+	return resolved
+}</code></pre>
+
+<p class="marker">===== END catalogue.go =====</p>
+
+<p class="marker">===== BEGIN watch.go =====</p>
+
+<h2>watch.go</h2>
+<p class="file-meta">84 lines &middot; the check loop, SIGHUP reload, and per-service handling</p>
+
+<pre><code>package main
+
+import (
+	"os"
+	"os/signal"
+	"strconv"
+	"syscall"
+	"time"
+)
+
+// checkInterval is how often Serverwake Free polls the watched
+// services. Fixed at 60 seconds in the free version.
+const checkInterval = 60 * time.Second
+
+// restartGracePeriod is how long to wait after issuing a restart
+// before re-checking whether the service came back up.
+const restartGracePeriod = 3 * time.Second
+
+// watchLoop resolves the catalogue once, then checks each service on
+// every tick of the interval. On SIGHUP, it re-resolves the catalogue
+// and logs the new watch list. It never returns.
+//
+// The sysadmin sends SIGHUP with:
+//
+//	sudo systemctl reload serverwake-free
+//
+// This is required after installing or removing a service, so that
+// Serverwake picks up the change.
+func watchLoop() {
+	services := resolveCatalogue()
+
+	reload := make(chan struct{}, 1)
+	sigc := make(chan os.Signal, 1)
+	signal.Notify(sigc, syscall.SIGHUP)
+	go func() {
+		for range sigc {
+			select {
+			case reload <- struct{}{}:
+			default:
+			}
+		}
+	}()
+
+	ticker := time.NewTicker(checkInterval)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-ticker.C:
+			for _, name := range services {
+				checkOne(name)
+			}
+		case <-reload:
+			services = resolveCatalogue()
+			logBoth("catalogue reloaded; watching " +
+				strconv.Itoa(len(services)) + " services")
+		}
+	}
+}
+
+// checkOne evaluates a single service. Only services in the failed
+// state are restarted. Services that are active, inactive (deliberately
+// stopped), activating, deactivating, or masked are left alone.
+// Only interventions are logged.
+func checkOne(name string) {
+	if !isFailed(name) {
+		return
+	}
+
+	if err := restart(name); err != nil {
+		logBoth(name + " restart command failed: " + err.Error())
+		return
+	}
+
+	time.Sleep(restartGracePeriod)
+
+	if isActive(name) {
+		logBoth(name + " was down; restarted successfully")
+	} else {
+		logBoth(name + " still down after restart")
+	}
+}</code></pre>
+
+<p class="marker">===== END watch.go =====</p>
+
+<p class="marker">===== BEGIN main.go =====</p>
+
+<h2>main.go</h2>
+<p class="file-meta">39 lines &middot; flag parsing and entry point</p>
+
+<pre><code>package main
+
+import (
+	"fmt"
+	"os"
+)
+
+// usage prints the minimal CLI help.
+func usage() {
+	fmt.Println("serverwake-free — a minimal service watchdog")
+	fmt.Println()
+	fmt.Println("Usage: serverwake-free [--version | --daemon]")
+}
+
+// runDaemon enters the watch loop. It never returns.
+func runDaemon() {
+	watchLoop()
+}
+
+// main is the entry point.
+func main() {
+	if len(os.Args) > 1 {
+		switch os.Args[1] {
+		case "--version", "-v":
+			printVersion()
+			return
+		case "--daemon":
+			runDaemon()
+			return
+		default:
+			fmt.Fprintf(os.Stderr, "unknown flag: %s\n", os.Args[1])
+			usage()
+			os.Exit(1)
+		}
+	}
+
+	usage()
+	os.Exit(1)
+}</code></pre>
+
+<p class="marker">===== END main.go =====</p>
+
+<p class="marker">===== BEGIN go.mod =====</p>
+
+<h2>go.mod</h2>
+<p class="file-meta">3 lines &middot; module declaration</p>
+
+<pre><code>module serverwake-free
+
+go 1.25</code></pre>
+
+<p class="marker">===== END go.mod =====</p>
+
+<div class="note">
+  <strong>Total:</strong> 6 Go files, 321 lines, plus <code>go.mod</code>.
+  No dependencies beyond the standard library. Build with
+  <code>go build -ldflags="-s -w" -o serverwake-free .</code>
+</div>
+
+<footer>
+  <p>Serverwake Free is a product of <a href="/">Job Done Marketing LLC</a>. The paid version is at <a href="https://serverwake.com">serverwake.com</a>.</p>
+  <p>Licensed under the Apache License, Version 2.0. See the <code>LICENSE</code> file in the tarball.</p>
+</footer>
+
+</div>
+</body>
+</html>
+HTMLEOF
+
+echo "Written: $(wc -l < serverwake-free-source.html) lines, $(wc -c < serverwake-free-source.html) bytes"
