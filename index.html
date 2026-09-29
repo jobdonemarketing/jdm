@@ -6,7 +6,6 @@
 <meta name="description" content="Job Done Marketing LLC – Full-service digital marketing & custom software development agency. Strategy, SEO, paid ads, web development, automation. NAICS 541511 / 541613 / 541810 | SIC 7371 / 7311 / 8742. Based in Albuquerque, NM." />
 <title>Job Done Marketing LLC – Full-Service Digital Agency | NAICS 541511 • 541613</title>
 
-<!-- Canonical -->
 <link rel="canonical" href="https://jobdone.marketing/" />
 
 <!-- Open Graph / Facebook -->
@@ -31,7 +30,7 @@
   "telephone": "+1-505-520-2344",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "1209 Mountain Road Pl NE, Ste N",
+    "streetAddress": "1209 Mountain Road Pl NE, Ste 12681",
     "addressLocality": "Albuquerque",
     "addressRegion": "NM",
     "postalCode": "87110",
@@ -134,7 +133,6 @@ body {
   background: white;
   color: var(--primary);
 }
-/* Third button — free software */
 .btn-free {
   background: transparent;
   border: 2px solid #fbbf24;
@@ -663,6 +661,9 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+footer address {
+  font-style: normal;
+}
 .footer-legal {
   margin-top: 0.5rem;
   font-size: 0.8rem;
@@ -842,7 +843,7 @@ footer a:hover {
 
   <div class="projects-unified">
 
-    <!-- LIVE IN PRODUCTION (NEW) -->
+    <!-- LIVE IN PRODUCTION -->
     <div class="project-subsection live">
       <div class="subsection-header">
         <span class="subsection-icon">🚀</span>
@@ -863,7 +864,7 @@ footer a:hover {
             DailyShip <span class="tld-badge">dev tools</span>
           </a>
         </li>
-                <li>
+        <li>
           <a href="https://oldschooltales.com/" target="_blank" rel="noopener">
             Old School Tales <span class="tld-badge">education</span>
           </a>
@@ -885,32 +886,32 @@ footer a:hover {
       <p class="subsection-desc">Global-scale platforms and international campaigns reaching audiences across multiple continents and languages.</p>
       <ul class="project-list">
         <li>
-          <a href="https://www.devandgrowth.com" rel="nofollow" target="_blank">
+          <a href="https://www.devandgrowth.com" target="_blank" rel="noopener">
             Dev&amp;Growth <span class="tld-badge">evaluations</span>
           </a>
         </li>
         <li>
-          <a href="https://bizangel.online" rel="nofollow" target="_blank">
+          <a href="https://bizangel.online" target="_blank" rel="noopener">
             BizAngel <span class="tld-badge">investments</span>
           </a>
         </li>
         <li>
-          <a href="https://consulted.online" rel="nofollow" target="_blank">
+          <a href="https://consulted.online" target="_blank" rel="noopener">
             Consulted.Online <span class="tld-badge">consulting</span>
           </a>
         </li>
         <li>
-          <a href="https://pizzalist.eu" rel="nofollow" target="_blank">
+          <a href="https://pizzalist.eu" target="_blank" rel="noopener">
             PizzaList <span class="tld-badge">directory</span>
           </a>
         </li>
         <li>
-          <a href="https://lunavenue.com" rel="nofollow" target="_blank">
+          <a href="https://lunavenue.com" target="_blank" rel="noopener">
             LunaVenue <span class="tld-badge">resorts</span>
           </a>
         </li>
         <li>
-          <a href="https://independent.farm" rel="nofollow" target="_blank">
+          <a href="https://independent.farm" target="_blank" rel="noopener">
             IndependentFarm <span class="tld-badge">off-grid</span>
           </a>
         </li>
@@ -938,7 +939,6 @@ footer a:hover {
   </div>
 
   <!-- ====== FREE SOFTWARE SECTION ====== -->
-  <section class="section container">
   <div id="free" class="free-container">
     <div class="free-header">
       <div class="free-badge">🔓 Open Source · Apache 2.0</div>
@@ -952,19 +952,30 @@ footer a:hover {
         <div class="free-icon">⏰</div>
         <h3>serverwake-free</h3>
         <span class="free-license">Apache 2.0</span>
-        <p>A lightweight self-install binary (written in Go forUbuntu 24.04 servers) that restarts dead and hanging services as soon as they go down or as soon as they don't reply anymore (not if they're busy, just when hanging). We have it running in production on all our machines. Ideal for home labs, small VPS instances, and CI runners that need to stay responsive without paying for always-on uptime.</p>
-        <a href="/serverwake-free.html" target="_blank" rel="noopener">
+        <p>A lightweight self-install binary (written in Go for Ubuntu 24.04 servers) that restarts dead and hanging services as soon as they go down or as soon as they don't reply anymore (not if they're busy, just when hanging). We have it running in production on all our machines. Ideal for home labs, small VPS instances, and CI runners that need to stay responsive without paying for always-on uptime.</p>
+        <a href="/serverwake-free.html" target="_blank" rel="noopener" class="free-download-btn">
           <span class="arrow">⬇</span> Go to serverwake-free.html
         </a>
       </div>
 
-      <!-- Placeholder 1 -->
+      <!-- logrotate-lite -->
       <div class="free-card">
         <div class="free-icon">📦</div>
         <h3>logrotate-lite</h3>
-          </div>
-      </section>
+        <span class="free-license">Apache 2.0</span>
+        <p>A minimal log-rotation utility for Ubuntu 24.04 servers. Keeps your logs under control without the configuration overhead of the standard logrotate — sane defaults, simple config file, and no surprises. Built for small VPS instances and CI runners where disk space matters and logrotate's complexity is overkill.</p>
+        <a href="/logrotate-lite.html" target="_blank" rel="noopener" class="free-download-btn">
+          <span class="arrow">⬇</span> Go to logrotate-lite.html
+        </a>
+      </div>
 
+    </div><!-- /.free-grid -->
+    <div class="free-note">
+      All tools are provided as-is under the Apache License 2.0. No warranty.
+      <a href="mailto:sales@jobdone.marketing">Contact us</a> for commercial support.
+    </div>
+  </div><!-- /.free-container -->
+</section>
 
 <!-- CONTACT CTA -->
 <section class="section container">
@@ -981,9 +992,12 @@ footer a:hover {
   <div class="container">
     <p>&copy; 2026 <strong>Job Done Marketing LLC</strong></p>
     <div class="footer-legal">
-      <p>1209 Mountain Road Pl NE, Ste 12681, Albuquerque, NM 87110, USA</p>
-      <p>Tel: +1 505-520-2344 &nbsp;|&nbsp; Fax: +1 505-520-2324</p>
-      <p>Email: <a href="mailto:sales@jobdone.marketing">sales@jobdone.marketing</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+      <address>
+        1209 Mountain Road Pl NE, Ste 12681<br>
+        Albuquerque, NM 87110, USA<br>
+        Tel: <a href="tel:+15055202344">+1 505-520-2344</a> &nbsp;|&nbsp; Fax: +1 505-520-2324<br>
+        Email: <a href="mailto:sales@jobdone.marketing">sales@jobdone.marketing</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a>
+      </address>
     </div>
     <div class="footer-codes">
       NAICS: 541511 (Custom Computer Programming) · 541613 (Marketing Consulting) · 541810 (Advertising Agencies)<br>
@@ -991,7 +1005,6 @@ footer a:hover {
     </div>
   </div>
 </footer>
-
 
 </body>
 </html>
